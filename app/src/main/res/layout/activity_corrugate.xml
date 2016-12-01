@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/top_red">
+    <mmf.com.bubblingdemo.CorrugateView
+        android:id="@+id/aa"
+        android:layout_width="match_parent"
+        android:layout_marginTop="100dp"
+        app:imgSize="50dp"
+        app:waveHeight="20dp"
+        app:rollTime="30"
+        app:rollDistance="5"
+        android:layout_height="70dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_below="@+id/aa"></View>
+</RelativeLayout>

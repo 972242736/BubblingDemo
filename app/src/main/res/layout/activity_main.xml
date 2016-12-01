@@ -1,35 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:onClick="start"
-    android:background="@color/top_red"
-    tools:context="mmf.com.bubblingdemo.MainActivity">
+    android:background="@color/white">
 
     <mmf.com.bubblingdemo.LoveLayout
         android:id="@+id/loveLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-    <mmf.com.bubblingdemo.CorrugateView
-        android:id="@+id/aa"
-        android:layout_width="match_parent"
-        android:layout_marginTop="100dp"
-        app:imgSize="50dp"
-        app:waveHeight="20dp"
-        app:rollTime="30"
-        app:rollDistance="5"
-        android:layout_height="70dp" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/withe"
-        android:layout_below="@+id/aa"></View>
-
-    <!--<Button-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:onClick="start"-->
-        <!--android:text="赞一个" />-->
 </RelativeLayout>

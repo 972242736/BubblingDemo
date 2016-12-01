@@ -95,7 +95,7 @@ public class CorrugateView extends View {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setColor(getResources().getColor(R.color.withe));
+        mPaint.setColor(getResources().getColor(R.color.white));
         mWavePathBottom = new Path();
         mPaintBottom = new Paint();
         mPaintBottom.setAntiAlias(true);

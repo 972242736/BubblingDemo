@@ -1,8 +1,11 @@
-package mmf.com.bubblingdemo;
+package mmf.com.bubblingdemo.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import mmf.com.bubblingdemo.LoveLayout;
+import mmf.com.bubblingdemo.R;
 
 public class MainActivity extends AppCompatActivity {
 
