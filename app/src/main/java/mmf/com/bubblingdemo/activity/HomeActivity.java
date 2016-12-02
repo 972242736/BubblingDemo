@@ -20,6 +20,8 @@ public class HomeActivity extends Activity implements View.OnClickListener{
     TextView tv1;
     @Bind(R.id.tv2)
     TextView tv2;
+    @Bind(R.id.tv3)
+    TextView tv3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class HomeActivity extends Activity implements View.OnClickListener{
         ButterKnife.bind(this);
         tv1.setOnClickListener(this);
         tv2.setOnClickListener(this);
+        tv3.setOnClickListener(this);
     }
 
     @Override
@@ -38,6 +41,9 @@ public class HomeActivity extends Activity implements View.OnClickListener{
                break;
            case R.id.tv2:
                startActivity(new Intent(this,CorrugateActivity.class));
+               break;
+           case R.id.tv3:
+               startActivity(new Intent(this,FlashPhotosActivity.class));
                break;
         }
     }
