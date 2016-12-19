@@ -68,7 +68,7 @@ public class CorrugateView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         mWidth = getMeasuredWidth();
-        mHeight = waveHeight+imgSize;
+        mHeight = waveHeight + imgSize;
 //        mHeight = getMeasuredHeight();
 //        imgSize20 = mHeight - imgSize;
 //        allHeight = imgSize20 / 2 + imgSize;
@@ -133,7 +133,7 @@ public class CorrugateView extends View {
                 case 0:
                 case 2:
                     // 定义波浪的中间为起点
-                    y = waveHeight/ 2 + imgSize;
+                    y = waveHeight / 2 + imgSize;
                     break;
                 case 1:
                     // 往下波动的控制点
@@ -161,6 +161,12 @@ public class CorrugateView extends View {
         timer.schedule(mTask, 0, rollTime);
     }
 
+    public void cancelTask(){
+        timer.cancel();
+        timer = null;
+        mTask.cancel();
+        mTask = null;
+    }
     class MyTimerTask extends TimerTask {
         Handler handler;
 
@@ -191,6 +197,7 @@ public class CorrugateView extends View {
             }
             if (allHeight >= mWidth / 2 && !ismHeight) {
                 ismHeight = true;
+                allHeight = 0;
                 i = 0;
             }
             for (Point point : mPointsList) {
@@ -215,9 +222,10 @@ public class CorrugateView extends View {
     }
 
     private float getHeigthIcon() {
-        i++;
-        float t = 20.0F * i / mWidth;
+        //移动的比率
+        float t = (float) allHeight * 2 / mWidth;
         float y;
+        //ismHeight为true表示向下移动 false表示向上移动
         if (ismHeight) {
             y = 2 * imgSize + waveHeight - (mPointsList.get(0).y * (1 - t) * (1 - t)
                     + 2 * mPointsList.get(1).y * t * (1 - t)
@@ -257,8 +265,6 @@ public class CorrugateView extends View {
         canvas.drawPath(mWavePath, mPaint);
         Bitmap bitmap = BitmapFactory.decodeResource(this.getContext()
                 .getResources(), R.mipmap.icon_2017);
-//        i++;
-//        if (i % 2 == 0)
         drawImage(canvas, bitmap, (mWidth - imgSize) / 2, (int) getHeigthIcon() - imgSize,
                 imgSize, imgSize, 0, 0, mPaint);
 
@@ -290,17 +296,4 @@ public class CorrugateView extends View {
         dst = null;
     }
 
-    private PointF getTogglePointF(int i, int length) {
-        PointF pointF = new PointF();
-        if (i == 2) {
-            //下面的点
-            pointF.x = mWidth / 4 + mWidth / 2;
-            pointF.y = mHeight - length;
-        } else {
-            //上面的点
-            pointF.x = mWidth / 2;
-            pointF.y = 0 + length;
-        }
-        return pointF;
-    }
 }

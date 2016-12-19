@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.HomeActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.CorrugateActivity"/>
-        <activity android:name=".activity.MainActivity"/>
+        <activity android:name=".activity.LoveActivity"/>
         <activity android:name=".activity.FlashPhotosActivity"/>
     </application>
 

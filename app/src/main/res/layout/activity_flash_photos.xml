@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:text="长按图片5秒显示"
+        android:text="长按图片3秒显示"
         android:textColor="@color/top_red" />
 
     <ImageView

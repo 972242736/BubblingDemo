@@ -5,17 +5,17 @@
     android:layout_height="match_parent"
     android:background="@color/top_red">
     <mmf.com.bubblingdemo.CorrugateView
-        android:id="@+id/aa"
+        android:id="@+id/cv_waves"
         android:layout_width="match_parent"
         android:layout_marginTop="100dp"
         app:imgSize="50dp"
         app:waveHeight="20dp"
-        app:rollTime="30"
+        app:rollTime="20"
         app:rollDistance="5"
         android:layout_height="70dp" />
     <View
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:layout_below="@+id/aa"></View>
+        android:layout_below="@+id/cv_waves"></View>
 </RelativeLayout>

@@ -43,6 +43,7 @@ public class FlashPhotosActivity extends Activity implements View.OnTouchListene
         setContentView(R.layout.activity_flash_photos);
         ButterKnife.bind(this);
         ivLongClick.setOnTouchListener(this);
+        ivLongClick.setForeground(getResources().getDrawable(R.mipmap.icon_1));
     }
 
     @Override
@@ -83,6 +84,7 @@ public class FlashPhotosActivity extends Activity implements View.OnTouchListene
                                     isShow = true;
                                     isUp = true;
                                     ivLongClick.setImageResource(R.mipmap.icon_photo);
+                                    ivLongClick.setForeground(null);
                                     tvTime.setText("已显示图片");
                                     //显示照片的计时
                                     recLen = DOWN_TIME;
@@ -99,7 +101,7 @@ public class FlashPhotosActivity extends Activity implements View.OnTouchListene
                                 }
                             }
                         } else {
-                            //当到达显示的时间后讲照片打码
+                            //当到达显示的时间后将照片打码
                             if (recLen <= 0)
                                 closeImg();
                         }
