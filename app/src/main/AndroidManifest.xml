@@ -18,9 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="mmf.com.bubblingdemo.header.kmshack.newsstand.HeaderMainActivity"/>
         <activity android:name=".activity.CorrugateActivity"/>
         <activity android:name=".activity.LoveActivity"/>
         <activity android:name=".activity.FlashPhotosActivity"/>
+        <activity android:name=".activity.RoundProgressActivity"/>
     </application>
 
 </manifest>

@@ -6,4 +6,6 @@
     <color name="top_red">#FB3D53</color>
     <color name="top_withe">#bfffffff</color>
     <color name="white">#ffffff</color>
+
+    <color name="background_tab_pressed">#6633B5E5</color>
 </resources>

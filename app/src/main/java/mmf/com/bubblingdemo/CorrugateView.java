@@ -10,6 +10,8 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.PointF;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Message;
@@ -45,8 +47,7 @@ public class CorrugateView extends View {
     private List<Point> mPointsListBottom;
     private int allLength = 0;      //移动距离的总值，最大为总宽，用于重置波浪使用
     private int allHeight = 0;      //移动距离的总值，最大为总宽的一半，用于改变图标向上还是向下使用
-    int i = 0;
-    private boolean ismHeight = false;
+    private boolean ismHeight = false;  //用于判断是否移动超过一半的距离
 
     public CorrugateView(Context context) {
         super(context);
@@ -68,12 +69,14 @@ public class CorrugateView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         mWidth = getMeasuredWidth();
+        //控件高度=图片的高度加上波浪的高度
         mHeight = waveHeight + imgSize;
-//        mHeight = getMeasuredHeight();
-//        imgSize20 = mHeight - imgSize;
-//        allHeight = imgSize20 / 2 + imgSize;
+        //初始化每个点
         initPoint();
         invalidate();
+        //开启一个计时器
+        if (timer == null)
+            start();
     }
 
     public void init(Context context, AttributeSet attrs) {
@@ -89,13 +92,17 @@ public class CorrugateView extends View {
             attr.recycle();
         }
         length = rollDistance;
+        //保存上面一条曲线的数组
         mPointsList = new ArrayList<Point>();
+        //保存下面一条曲线的数组
         mPointsListBottom = new ArrayList<Point>();
+        //画上面曲线的画笔和线
         mWavePath = new Path();
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setColor(getResources().getColor(R.color.white));
+        //画下面曲线的画笔和线
         mWavePathBottom = new Path();
         mPaintBottom = new Paint();
         mPaintBottom.setAntiAlias(true);
@@ -103,6 +110,9 @@ public class CorrugateView extends View {
         mPaintBottom.setColor(getResources().getColor(R.color.top_withe));
     }
 
+    /**
+     * 定义出每个点的位置
+     */
     private void initPoint() {
         mPointsList = new ArrayList<Point>();
         mPointsListBottom = new ArrayList<Point>();
@@ -146,11 +156,11 @@ public class CorrugateView extends View {
             }
             mPointsListBottom.add(new Point(x, y));
         }
-        invalidate();
-        if (timer == null)
-            start();
     }
 
+    /**
+     * 开启一个定时器，主要用来移动波浪使用
+     */
     private void start() {
         if (mTask != null) {
             mTask.cancel();
@@ -161,6 +171,9 @@ public class CorrugateView extends View {
         timer.schedule(mTask, 0, rollTime);
     }
 
+    /**
+     * 关闭计时器
+     */
     public void cancelTask(){
         timer.cancel();
         timer = null;
@@ -187,30 +200,33 @@ public class CorrugateView extends View {
         public void handleMessage(Message msg) {
             allLength += length;
             allHeight += length;
+//          ismHeight//用于判断是否移动超过一半的距离
+//          allHeight//移动距离的总值，最大为总宽的一半，用于改变图标向上还是向下使用
             if (allLength >= mWidth) {
-                length = length - (allLength - mWidth);
                 ismHeight = false;
                 allHeight = 0;
-                i = 0;
-            } else {
-                length = rollDistance;
             }
             if (allHeight >= mWidth / 2 && !ismHeight) {
                 ismHeight = true;
                 allHeight = 0;
-                i = 0;
             }
-            for (Point point : mPointsList) {
-                point.x = point.x + length;
-            }
-            for (Point point : mPointsListBottom) {
-                point.x = point.x + length;
+            //将每个坐标点的距离都加上移动一次的步长
+            if (!(allLength >= mWidth)){
+                for (Point point : mPointsList) {
+                    point.x = point.x + length;
+                }
+                for (Point point : mPointsListBottom) {
+                    point.x = point.x + length;
+                }
             }
             invalidate();
         }
 
     };
 
+    /**
+     * 重置坐标点，回到刚定义时的位置
+     */
     private void resetPoints() {
         for (int i = 0; i < mPointsList.size(); i++) {
             mPointsList.get(i).x = mPointsList.get(i).x - mWidth;
@@ -221,16 +237,25 @@ public class CorrugateView extends View {
         }
     }
 
+    /**
+     * 获取头像中心的x对应的曲线的y值
+     * @return
+     */
     private float getHeigthIcon() {
         //移动的比率
         float t = (float) allHeight * 2 / mWidth;
         float y;
         //ismHeight为true表示向下移动 false表示向上移动
         if (ismHeight) {
-            y = 2 * imgSize + waveHeight - (mPointsList.get(0).y * (1 - t) * (1 - t)
-                    + 2 * mPointsList.get(1).y * t * (1 - t)
-                    + mPointsList.get(2).y * t * t);
+//            y = 2 * imgSize + waveHeight - (mPointsList.get(0).y * (1 - t) * (1 - t)
+//                    + 2 * mPointsList.get(1).y * t * (1 - t)
+//                    + mPointsList.get(2).y * t * t);
+            //二价的贝塞尔曲线公式
+            y = mPointsList.get(2).y * (1 - t) * (1 - t)
+                    + 2 * mPointsList.get(3).y * t * (1 - t)
+                    + mPointsList.get(4).y * t * t;
         } else {
+            //二价的贝塞尔曲线公式
             y = mPointsList.get(0).y * (1 - t) * (1 - t)
                     + 2 * mPointsList.get(1).y * t * (1 - t)
                     + mPointsList.get(2).y * t * t;
@@ -240,6 +265,7 @@ public class CorrugateView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        //画两条曲线
         mWavePath.reset();
         mWavePathBottom.reset();
         mWavePathBottom.moveTo(mPointsListBottom.get(0).x, mPointsListBottom.get(0).y);
@@ -263,11 +289,12 @@ public class CorrugateView extends View {
         mWavePath.lineTo(mPointsList.get(0).x, mPointsList.get(0).y);
         mWavePath.close();
         canvas.drawPath(mWavePath, mPaint);
+        //画头像
         Bitmap bitmap = BitmapFactory.decodeResource(this.getContext()
                 .getResources(), R.mipmap.icon_2017);
         drawImage(canvas, bitmap, (mWidth - imgSize) / 2, (int) getHeigthIcon() - imgSize,
                 imgSize, imgSize, 0, 0, mPaint);
-
+        //当移动的长度大于等于屏幕宽度重置点的坐标
         if (allLength >= mWidth) {
             resetPoints();
             allLength = 0;

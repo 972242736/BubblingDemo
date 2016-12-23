@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/app/src/main/java/mmf/com/bubblingdemo/header/astuetz" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/mmf/com/bubblingdemo/header/kmshack" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/background_tab.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_header_main.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_list.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/list_item.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/view_header_placeholder.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/view_kenburns.xml" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

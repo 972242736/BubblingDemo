@@ -1,12 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="start"
-    android:background="@color/white">
+    android:orientation="vertical">
 
-    <mmf.com.bubblingdemo.LoveLayout
-        android:id="@+id/loveLayout"
+    <TextView
+        android:id="@+id/tv1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</RelativeLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:text="飞出来的爱心"
+        android:textColor="@color/colorAccent"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:text="波浪头像"
+        android:textColor="@color/colorAccent"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tv3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:text="闪照"
+        android:textColor="@color/colorAccent"
+        android:textSize="15sp" />
+    <TextView
+        android:id="@+id/tv4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:text="拖动头像"
+        android:textColor="@color/colorAccent"
+        android:textSize="15sp" />
+    <TextView
+        android:id="@+id/tv5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:text="圆形波浪进度"
+        android:textColor="@color/colorAccent"
+        android:textSize="15sp" />
+
+</LinearLayout>

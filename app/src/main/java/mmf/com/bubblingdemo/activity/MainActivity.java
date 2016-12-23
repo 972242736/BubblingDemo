@@ -9,6 +9,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import mmf.com.bubblingdemo.R;
+import mmf.com.bubblingdemo.header.kmshack.newsstand.HeaderMainActivity;
 
 /**
  * Created by MMF
@@ -22,15 +23,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
     TextView tv2;
     @Bind(R.id.tv3)
     TextView tv3;
+    @Bind(R.id.tv4)
+    TextView tv4;
+    @Bind(R.id.tv5)
+    TextView tv5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         tv1.setOnClickListener(this);
         tv2.setOnClickListener(this);
         tv3.setOnClickListener(this);
+        tv4.setOnClickListener(this);
+        tv5.setOnClickListener(this);
     }
 
     @Override
@@ -44,6 +51,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.tv3:
                 startActivity(new Intent(this, FlashPhotosActivity.class));
+                break;
+            case R.id.tv4:
+                startActivity(new Intent(this, HeaderMainActivity.class));
+            case R.id.tv5:
+                startActivity(new Intent(this, RoundProgressActivity.class));
                 break;
         }
     }
